@@ -1,0 +1,168 @@
+{
+  "name": "Practica8_E1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -16
+      ],
+      "id": "f2145690-e005-488c-8ef6-4d0c19a72746",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "task",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "combineConditions": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        144,
+        -16
+      ],
+      "id": "00e58eb4-fff1-4ccd-9ac4-a034e93b55cd",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "6dMrFxYWpet0pm0k",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "task",
+          "mode": "list",
+          "cachedResultName": "task"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "done": false,
+            "title": "Tarea creada desde n8n",
+            "description": "Prueba de integración directa con BBDD",
+            "id": 0
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "done",
+              "displayName": "done",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -48,
+        -16
+      ],
+      "id": "d0a76b34-8219-4f0b-b460-14b5c9234608",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "6dMrFxYWpet0pm0k",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9de33c5b-d544-49ca-b3e0-89960b54998e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d06e09e44e9ea652bdd258ab8319850495f8ba615c75e63957308de80455e87e"
+  },
+  "id": "2A0hSLNad8LNxtey",
+  "tags": []
+}

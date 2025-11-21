@@ -1,0 +1,72 @@
+{
+  "name": "Practica8_E1_1",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eed0262f-4aa6-4088-8026-c2dcbd9aa368",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -272,
+        -48
+      ],
+      "id": "0769364b-cd36-473e-ad9d-638da7d7db3d",
+      "name": "Webhook",
+      "webhookId": "eed0262f-4aa6-4088-8026-c2dcbd9aa368"
+    },
+    {
+      "parameters": {
+        "queue": "task_created",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        -64,
+        -48
+      ],
+      "id": "fb080e87-c3a9-4f49-b0cf-565566034d73",
+      "name": "RabbitMQ",
+      "alwaysOutputData": false,
+      "retryOnFail": false,
+      "credentials": {
+        "rabbitmq": {
+          "id": "mQnLfca8UdLJBUaC",
+          "name": "RabbitMQ account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "RabbitMQ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RabbitMQ": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4bd43d30-7296-45d2-b3b0-0ac29124ce0f",
+  "meta": {
+    "instanceId": "d06e09e44e9ea652bdd258ab8319850495f8ba615c75e63957308de80455e87e"
+  },
+  "id": "DoPERMurqEFAfzo9",
+  "tags": []
+}
